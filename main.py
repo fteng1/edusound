@@ -45,7 +45,7 @@ class InputNotesPage(webapp2.RequestHandler):
         if self.request.get("action") == "Add to Notes":
             start_string = self.request.get("starttime")
             subject = self.request.get("subject-type")
-            current_subject = Subject.query().filter(Subject.owner == user.user_id()).order(Subject.start).fetch()
+            current_subject = Subject.query().filter(Subject.owner == user.user_id() and Subject.name == subject).fetch()
 
 
 
