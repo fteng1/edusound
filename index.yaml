@@ -10,17 +10,7 @@ indexes:
 # automatically uploaded to the admin console when you next deploy
 # your application using appcfg.py.
 
-- kind: Event
-  properties:
-  - name: owner
-  - name: start
 
-- kind: Event
-  properties:
-  - name: owner
-  - name: start
-  - name: end
-  - name: type
 
 - kind: ModelWithUser
   properties:
