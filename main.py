@@ -35,6 +35,19 @@ class MainPage(webapp2.RequestHandler):
         main_template = JINJA_ENVIRONMENT.get_template('home.html')
         self.response.write(main_template.render())
 
+class InputNotesPage(webapp2.RequestHandler):
+    def get(self):
+        calendar_template = JINJA_ENVIRONMENT.get_template('InputNotes.html')
+        user = users.get_current_user()
+        self.response.write(calendar_template.render())
+
+    def post(self):
+        if self.request.get("action") == "Add to Notes":
+            start_string = self.request.get("starttime")
+            subject = self.request.get("subject-type")
+            current_subject = Subject.query().filter(Subject.owner == user.user_id()).order(Subject.start).fetch()
+
+
 
 def check_profile_exists(value):
     user = users.get_current_user()
