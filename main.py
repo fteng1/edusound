@@ -5,8 +5,6 @@ import os
 from google.appengine.ext import ndb
 from google.appengine.api import users
 from models import ModelWithUser
-from models import Event
-
 
 
 JINJA_ENVIRONMENT = jinja2.Environment(
@@ -34,7 +32,7 @@ class MainPage(webapp2.RequestHandler):
             greeting = '<a href="{}">Sign in</a>'.format(login_url)
         self.response.write(
             '<html><body>{}</body></html>'.format(greeting))
-        main_template = JINJA_ENVIRONMENT.get_template('log_in.html')
+        main_template = JINJA_ENVIRONMENT.get_template('home.html')
         self.response.write(main_template.render())
 
 class InputNotes(webapp2.RequestHandler):
@@ -75,12 +73,19 @@ class InputMusic(webapp2.RequestHandler):
         # food_record.put()
         self.redirect('/inputmusic')
 
-class Math(webapp2.RequestHandler):
-    def get(self):
-        start_template = jinja_current_dir.get_template("templates/Math.html")
-        self.response.write(start_template.render())
-    def post(self):
-        self.redirect('/math')
+def check_profile_exists(value):
+    user = users.get_current_user()
+    my_profiles = ModelWithUser.query().filter(ModelWithUser.user_id == user.user_id()).fetch()
+    if len(my_profiles) == 1:
+        my_profile = my_profiles[0]
+    else:
+        my_profile = value #will either be None of the Profile creator class
+        #my_profile = Profile()
+        my_profile.user_id = user.user_id()
+        my_profile.put()
+    return my_profile
+
+
 
 class Science(webapp2.RequestHandler):
     def get(self):
@@ -88,6 +93,13 @@ class Science(webapp2.RequestHandler):
         self.response.write(start_template.render())
     def post(self):
         self.redirect('/science')
+
+class Math(webapp2.RequestHandler):
+    def get(self):
+        start_template = jinja_current_dir.get_template("templates/Math.html")
+        self.response.write(start_template.render())
+    def post(self):
+        self.redirect('/math')
 
 class CS(webapp2.RequestHandler):
     def get(self):
