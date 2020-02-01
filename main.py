@@ -5,8 +5,6 @@ import os
 from google.appengine.ext import ndb
 from google.appengine.api import users
 from models import ModelWithUser
-from models import Event
-
 
 
 JINJA_ENVIRONMENT = jinja2.Environment(
@@ -34,8 +32,21 @@ class MainPage(webapp2.RequestHandler):
             greeting = '<a href="{}">Sign in</a>'.format(login_url)
         self.response.write(
             '<html><body>{}</body></html>'.format(greeting))
-        main_template = JINJA_ENVIRONMENT.get_template('log_in.html')
+        main_template = JINJA_ENVIRONMENT.get_template('home.html')
         self.response.write(main_template.render())
+
+
+def check_profile_exists(value):
+    user = users.get_current_user()
+    my_profiles = ModelWithUser.query().filter(ModelWithUser.user_id == user.user_id()).fetch()
+    if len(my_profiles) == 1:
+        my_profile = my_profiles[0]
+    else:
+        my_profile = value #will either be None of the Profile creator class
+        #my_profile = Profile()
+        my_profile.user_id = user.user_id()
+        my_profile.put()
+    return my_profile
 
 
 

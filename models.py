@@ -12,3 +12,15 @@ class ModelWithUser(ndb.Model):
     @classmethod
     def get_by_user(cls, user):
         return cls.query().filter(cls.user_id == user.user_id()).get()
+
+class Subject(ndb.Model):
+    notes = ndb.StructuredProperty(Note, repeated=True)
+    songs = ndb.StructuredProperty(Song, repeated=True)
+
+class Note(ndb.Model):
+    date_created = ndb.DateTimeProperty(auto_now_add=True)
+    text = ndb.StringProperty()
+
+class Song(ndb.Model):
+    title = ndb.StringProperty()
+    artist = ndb.StringProperty()
