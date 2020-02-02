@@ -18,8 +18,9 @@ ul, li {
     position: fixed;
     top: 200px;
     right: 1vw;
-    max-height:350px;
-    overflow-y:auto;
+    max-height: 60vh;
+    max-width: 90vh;
+    overflow:auto;
 }
 
 .navbar-brand {
