@@ -107,5 +107,5 @@ def check_profile_exists(value):
 app = webapp2.WSGIApplication([
     ('/', MainPage),
     ('/input', InputNotesPage),
-    ('/subject', SubjectNotesPage)
+    ('/subject', SubjectPage)
 ], debug=True)
