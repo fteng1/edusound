@@ -1,31 +1,10 @@
-.list-group {
-  position: fixed;
-  top: 80px;
-  right: 1vw;
-  max-width: 90vh;
-  overflow-y: auto;
-}
-
-.list-group-item {
-  width: 15vw;
-  overflow-x: auto;
-}
-
-.card {
-  height: 45vh;
-  margin: 2vh 1vw;
-}
-
-.card-title {
-  font-size: 1.5vw;
-}
-
-.card-body {
-  font-size: 1vw;
-  overflow-y: auto;
-}
-
 .main {
   position: absolute;
   right: 0;
+}
+
+.navbar {
+  background-image: linear-gradient(45deg, #acebff, #98bdff);
+  padding-top: 15vh;
+  padding-bottom: 15vh;
 }
