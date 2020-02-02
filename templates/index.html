@@ -34,6 +34,7 @@
     {% for sub in subject_list %}
       <div class="list-group-item">
         <a href="/subject?{{sub.name.replace(' ', '%')}}">{{sub.name}}</a>
+        <a href="#" class="close">
       </div>
     {% endfor %}
   </div>
