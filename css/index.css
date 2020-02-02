@@ -10,7 +10,9 @@
   font-weight: 900;
   letter-spacing: 3px;
   text-shadow: 3px 2px white;
-  color: #F5FFFA;
+  /* color: #A9A9A9; */
+  /* color: #F5FFFA; */
+  color: #D3D3D3;
 }
 
 .navbar {
@@ -24,7 +26,17 @@
 }
 
 .space {
-  margin: 5vh;
+  margin: 3vh;
+}
+
+.message {
+  color: gray;
+  font-family: cursive;
+  font-style: italic;
+  font: Apple Chancery;
+  font-size: 25px;
+  margin-left: 60px;
+  margin-right: 60px;
 }
 
 #body {
