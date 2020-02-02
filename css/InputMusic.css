@@ -27,6 +27,10 @@
   color: #191970;
 }
 
+.create_music_entry {
+  padding-top: 15px;
+}
+
 /* .input_music {
   margin-top: 1vh;
   width: 300px;
