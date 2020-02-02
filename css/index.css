@@ -6,7 +6,7 @@
   font-family: cursive;
   font-style: italic;
   font: Apple Chancery;
-  font-size: 80px;
+  font-size: 75px;
   font-weight: 900;
   letter-spacing: 3px;
   text-shadow: 3px 2px white;
@@ -19,8 +19,8 @@
   /* background-position: right top; */
   background-size: 100% 200%;
   background-attachment: scroll;
-  padding-top: 15vh;
-  padding-bottom: 15vh;
+  padding-top: 10vh;
+  padding-bottom: 6vh;
 }
 
 .space {
@@ -71,16 +71,16 @@
 }
 
 .input_subject {
-  width: 350px;
-  height: 50px;
-  border-color: #a4d4ff;
+  width: 300px;
+  height: 40px;
+  border-color: #8ecaff;
   border-width: thick;
 }
 
 .input_button {
-  width: 200px;
-  height: 50px;
-  border-color: #a4d4ff;
+  width: 180px;
+  height: 40px;
+  border-color: #8ecaff;
   border-width: thick;
   font-size: 20px;
   font-weight: 600;
