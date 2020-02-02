@@ -35,7 +35,11 @@ class MainPage(webapp2.RequestHandler):
             greeting = '<a href="{}">Sign in</a>'.format(login_url)
         #self.response.write(
          #   '<html><body>{}</body></html>'.format(greeting))
+<<<<<<< HEAD
         main_template = JINJA_ENVIRONMENT.get_template('templates/index.html')
+=======
+        main_template = JINJA_ENVIRONMENT.get_template('templates/InputNotes.html')
+>>>>>>> 678bb3dfc627e6a41f3db72ee6082566320bda95
         self.response.write(main_template.render())
 
 class InputNotesPage(webapp2.RequestHandler):
