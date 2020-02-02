@@ -12,7 +12,12 @@
 <body>
   <nav class="navbar navbar-expand-lg">
     <a class="navbar-brand">EduSound</a>
-    <a href="/input" class="btn btn-large btn-primary ml-auto">Add Subject</a>
+    <div class="ml-auto">
+      <a href="/inputNotes" class="btn btn-large btn-primary">Add Notes</a>
+      <br />
+      <br />
+      <a href="/inputMusic" class="btn btn-large btn-primary">Add Music</a>
+    </div>
   </nav>
   <ul class="list-group my-2">
     <li class="list-group-item">
@@ -37,4 +42,6 @@
       <a href="/subject?Physics">Physics</a>
     </li>
   </ul>
+  <input id="subject" class="input_subject" type="string" name="subject_string">
+  <input class="input_subject" type="submit" name="action" value="Add Subject">
 </body>

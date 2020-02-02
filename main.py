@@ -110,7 +110,8 @@ def check_profile_exists(value):
 #https://www.dw.com/image/48688022_303.jpg
 app = webapp2.WSGIApplication([
     ('/', MainPage),
-    ('/input', InputNotesPage),
+    ('/inputNotes', InputNotesPage),
+    ('/inputMusic', InputMusicPage),
     ('/subject', SubjectNotesPage),
     ('/songs', InputMusicPage)
 ], debug=True)
