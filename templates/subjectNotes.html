@@ -115,15 +115,17 @@
       </div>
     </div>
   </div>
+
   <ul class="list-group right">
     <li class="list-group-item">
       <h4>Playlist</h4>
     </li>
+    {% for song in songs_list %}
     <li class="list-group-item">
-      hello
+      <h5>{{song.title}}</h5>
+      <h6>{{song.artist}}</h6>
+      <a href="{{song.link}}" id="song-link">Link</a>
     </li>
-    <li class="list-group-item">
-      world
-    </li>
+    {% endfor %}
   </ul>
 </body>
