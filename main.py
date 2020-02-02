@@ -45,16 +45,21 @@ class MainPage(webapp2.RequestHandler):
             subject_string = self.request.get("subject_string")
             subject = Subject(name=subject_string, owner=user.user_id())
             subject.put()
-        elif '#' in self.request.url:
-            key = self.request.get("delete")
-            self.response.write(key)
+        else:
+            key = self.request.get("subject-id")
             subject_list = Subject.query().filter(Subject.owner == user.user_id()).fetch()
             flag = False
             for subj in subject_list:
-                if str(subj.name) == key:
+                if str(subj.key) == key:
                     selected_subject = subj
                     flag = True
             if flag:
+                notes_to_delete = Note.query().filter(Note.subject == selected_subject.name and Note.owner == user.user_id())
+                songs_to_delete = Song.query().filter(Song.subject == selected_subject.name and Song.owner == user.user_id())
+                for note in notes_to_delete:
+                    note.key.delete()
+                for song in songs_to_delete:
+                    song.key.delete()
                 selected_subject.key.delete()
         time.sleep(0.1)
         self.redirect('/')
@@ -89,6 +94,31 @@ class SubjectNotesPage(webapp2.RequestHandler):
             "subject_name": subject_type
         }
         self.response.write(subject_template.render(subject_dict))
+
+    def post(self):
+        user = users.get_current_user()
+        if self.request.get("action") == "Add Subject" and self.request.get("subject_string") != '':
+            subject_string = self.request.get("subject_string")
+            subject = Subject(name=subject_string, owner=user.user_id())
+            subject.put()
+        else:
+            key = self.request.get("subject-id")
+            subject_list = Subject.query().filter(Subject.owner == user.user_id()).fetch()
+            flag = False
+            for subj in subject_list:
+                if str(subj.key) == key:
+                    selected_subject = subj
+                    flag = True
+            if flag:
+                notes_to_delete = Note.query().filter(Note.subject == selected_subject.name and Note.owner == user.user_id())
+                songs_to_delete = Song.query().filter(Song.subject == selected_subject.name and Song.owner == user.user_id())
+                for note in notes_to_delete:
+                    note.key.delete()
+                for song in songs_to_delete:
+                    song.key.delete()
+                selected_subject.key.delete()
+        time.sleep(0.1)
+        self.redirect('/')
 
 class InputMusicPage(webapp2.RequestHandler):
     def get(self):

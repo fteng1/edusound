@@ -34,21 +34,15 @@
     <input class="input_subject" type="submit" name="action" value="Add Subject">
   </form>
   </center>
+  <form method="post">
   <div class="flex-container">
     {% for sub in subject_list %}
-<<<<<<< HEAD
-      <form method="post">
         <div class="list-group-item">
           <a href="/subject?{{sub.name.replace(' ', '%')}}">{{sub.name}}</a>
-          <a href="#" class="close" name="delete" value="{{sub.name}}">
+          <input type="text" name="subject-id" value="{{sub.key}}" hidden>
+          <input class="close" type="submit" name="delete" value="X">
         </div>
-      </form>
-=======
-      <div class="list-group-item">
-        <a href="/subject?{{sub.name.replace(' ', '%')}}">{{sub.name}}</a>
-        <input class="close" type="submit" name="action" value="X">
-      </div>
->>>>>>> e5fd8862b5c6807f5849c64943c7c4411c6aa753
     {% endfor %}
   </div>
+  <form>
 </body>
