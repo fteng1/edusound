@@ -39,17 +39,18 @@
   <body>
     <nav class="navbar navbar-expand-lg">
       <a class="navbar-brand">Input Notes</a>
+      <a href="/" class="btn btn-large btn-primary ml-auto">Back to Main Page</a>
     </nav>
-    <a class="main" href="/"><button id="backbutton">Back to Main Page</button></a>
+    <!-- <a class="main" href="/"><button id="backbutton">Back to Main Page</button></a> -->
     <div class="input_notes">
       <div class="create_notes_entry">
         <!-- <h2>Input Music</h2> -->
         <label style="padding-left:20px" for="subjects">Choose Subject:</labeL>
         <form style="padding-left:20px" id="subjects" method="post">
           <select class="input_notes" name="subject-type">
-            <option value="Math">Math</option>
-            <option value="English">English</option>
-            <option value="Computer%Science">Computer Science</option>
+            {% for sub in subject_list %}
+              <option value="{{sub.name.replace(' ', '%')}}">{{sub.name}}</option>
+            {% endfor %}
           </select>
           <div align="center">
           <table><tbody>
@@ -62,7 +63,7 @@
           <form>
             <textarea name="notes_string" rows="10" cols="80" placeholder="Enter Notes Here"></textarea>
             <br>
-            <input class="input_notes" type="submit" name="action" value="Add to Notes">
+            <input class="input_notes btn btn-large btn-primary ml-auto" type="submit" name="action" value="Add to Notes">
           </form>
           </div>
         </form>
