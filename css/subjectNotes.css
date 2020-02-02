@@ -1,12 +1,25 @@
-.list-group {
-  /* position: fixed;
+/* .list-group {
+  position: fixed;
   top: 270px;
-  right: 1vw; */
+  right: 1vw;
   position: absolute;
   top: 40vh;
   right: 1vw;
   max-width: 90vh;
   overflow: auto;
+} */
+
+ul, li {
+    list-style:none;
+    padding:0;
+    margin:0;
+}
+.listWrapper {
+    position: fixed;
+    top: 200px;
+    right: 1vw;
+    max-height:350px;
+    overflow-y:auto;
 }
 
 .navbar-brand {
