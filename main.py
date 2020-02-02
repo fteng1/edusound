@@ -44,8 +44,13 @@ class InputNotesPage(webapp2.RequestHandler):
     def post(self):
         if self.request.get("action") == "Add to Notes":
             start_string = self.request.get("starttime")
-            subject = self.request.get("subject-type")
-            current_subject = Subject.query().filter(Subject.owner == user.user_id() and Subject.name == subject).fetch()
+            if start_string != "":
+                start_date = datetime.strptime(start_string, "%Y-%m-%dT%H:%M")
+                subject_type = self.request.get("subject-type")
+                current_subject = Subject.query().filter(Subject.owner == user.user_id() and Subject.name == subject_type).fetch()
+                if len(current_subject) == 1:
+                    subject = current_subject[0]
+                    subject.notes.append(Note(date_created=start_date, text=self.request.get("textbox")))
 
 
 
