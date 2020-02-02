@@ -35,7 +35,7 @@
 
 
 .flex-container {
-  padding-top: 100px;
+  padding-top: 50px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
