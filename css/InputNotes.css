@@ -55,4 +55,7 @@ select {
 
 .input-field {
   width: 60vw;
+  height: 40px;
+  border-color: #8ecaff;
+  border-width: thick;
 }
