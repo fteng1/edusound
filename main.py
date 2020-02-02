@@ -30,23 +30,14 @@ class MainPage(webapp2.RequestHandler):
         else:
             login_url = users.create_login_url('/welcome') #replace / with whatever url you want
             greeting = '<a href="{}">Sign in</a>'.format(login_url)
-<<<<<<< HEAD
-        self.response.write(
-            '<html><body>{}</body></html>'.format(greeting))
-=======
         #self.response.write(
          #   '<html><body>{}</body></html>'.format(greeting))
->>>>>>> b60d43fe27ac9cf2fc14565201612c5c5c6d48a2
         main_template = JINJA_ENVIRONMENT.get_template('templates/index.html')
         self.response.write(main_template.render())
 
 class InputNotesPage(webapp2.RequestHandler):
     def get(self):
-<<<<<<< HEAD
         input_notes_template = JINJA_ENVIRONMENT.get_template('templates/InputNotes.html')
-=======
-        calendar_template = JINJA_ENVIRONMENT.get_template('templates/InputNotes.html')
->>>>>>> b60d43fe27ac9cf2fc14565201612c5c5c6d48a2
         user = users.get_current_user()
         self.response.write(input_notes_template.render())
 
