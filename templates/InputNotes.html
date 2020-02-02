@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
   <html>
     <head>
       <title>Input Notes</title>
@@ -13,9 +13,9 @@
         <div id="userinputs">
           <center><form method="post">
             <select class="input_notes" name="subject-type">
-              <option value="math">Math</option>
-              <option value="english">English</option>
-              <option value="computer-science">Computer Science</option>
+              <option value="Math">Math</option>
+              <option value="English">English</option>
+              <option value="Computer%Science">Computer Science</option>
             </select>
             <input class="input_notes" type="text" name="textbox">
             <input class="input_notes" type="submit" name="action" value="Add to Notes">
@@ -23,4 +23,49 @@
         </div>
         <a href="/"><button class="main" id="backbutton">Back to Main Page</button></a>
       </body>
-  </html>
+  </html> -->
+  <!DOCTYPE html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+    <link href="css/InputNotes.css" rel="stylesheet" />
+  </head>
+
+  <body>
+    <nav class="navbar navbar-expand-lg">
+      <a class="navbar-brand">Input Notes</a>
+    </nav>
+    <a class="main" href="/"><button id="backbutton">Back to Main Page</button></a>
+    <div class="input_notes">
+      <div class="create_notes_entry">
+        <!-- <h2>Input Music</h2> -->
+        <label style="padding-left:20px" for="subjects">Choose Subject:</labeL>
+        <form style="padding-left:20px" id="subjects" method="post">
+          <select class="input_notes" name="subject-type">
+            <option value="Math">Math</option>
+            <option value="English">English</option>
+            <option value="Computer%Science">Computer Science</option>
+          </select>
+          <div align="center">
+          <table><tbody>
+          <!-- <tr><td><label for="notes">Notes:</label></td>
+            <td>
+              <input id="notes" class="input_notes" type="string" name="notes_string">
+            </td>
+          </tr>
+          </tbody></table><br> -->
+          <form>
+            <textarea name="notes_string" rows="10" cols="80" placeholder="Enter Notes Here"></textarea>
+            <br>
+            <input class="input_notes" type="submit" name="action" value="Add to Notes">
+          </form>
+          </div>
+        </form>
+      </div>
+    </div>
+  </body>

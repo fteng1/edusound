@@ -35,7 +35,7 @@ class MainPage(webapp2.RequestHandler):
             greeting = '<a href="{}">Sign in</a>'.format(login_url)
         #self.response.write(
          #   '<html><body>{}</body></html>'.format(greeting))
-        main_template = JINJA_ENVIRONMENT.get_template('templates/InputMusic.html')
+        main_template = JINJA_ENVIRONMENT.get_template('templates/InputNotes.html')
         self.response.write(main_template.render())
 
 class InputNotesPage(webapp2.RequestHandler):
@@ -55,9 +55,9 @@ class SubjectNotesPage(webapp2.RequestHandler):
     def get(self):
         # need to get the subject that was clicked
         if len(self.request.url.split('?')) > 1:
-            subject_type = self.request.url.split('?')[1]
+            subject_type = self.request.url.split('?')[1].replace('%', ' ')
         else:
-            subject_type = 'math'
+            subject_type = 'Math'
         user = users.get_current_user()
         subject_template = JINJA_ENVIRONMENT.get_template('templates/subjectNotes.html')
         notes = Note.query().filter(Note.owner == user.user_id() and Note.subject == subject_type).fetch()
@@ -81,7 +81,8 @@ class InputMusicPage(webapp2.RequestHandler):
             title_string = self.request.get("title_string")
             artist_string = self.request.get("artist_string")
             subject_string = self.request.get("subject-type")
-            song = Song(title=title_string, artist=artist_string, owner=user.user_id(), subject=subject_string)
+            song_link = self.request.get("song_string")
+            song = Song(link=song_link, title=title_string, artist=artist_string, owner=user.user_id(), subject=subject_string)
             song.put()
         self.get()
 
@@ -110,5 +111,6 @@ def check_profile_exists(value):
 app = webapp2.WSGIApplication([
     ('/', MainPage),
     ('/input', InputNotesPage),
-    ('/subject', SubjectNotesPage)
+    ('/subject', SubjectNotesPage),
+    ('/songs', InputMusicPage)
 ], debug=True)
