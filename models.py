@@ -7,6 +7,7 @@ class Note(ndb.Model):
     text = ndb.StringProperty()
     owner = ndb.StringProperty()
     subject = ndb.StringProperty()
+    title = ndb.StringProperty()
 
 class Song(ndb.Model):
     title = ndb.StringProperty()

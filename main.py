@@ -57,7 +57,7 @@ class InputNotesPage(webapp2.RequestHandler):
     def post(self):
         user = users.get_current_user()
         if self.request.get("action") == "Add to Notes":
-            note = Note(text=self.request.get("notes_string"), owner=user.user_id(), subject=self.request.get("subject-type"))
+            note = Note(text=self.request.get("notes_string"), owner=user.user_id(), subject=self.request.get("subject-type"), title=self.request.get("notes_title"))
             note.put()
         self.get()
 

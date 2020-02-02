@@ -17,11 +17,22 @@
   background-image: url("https://image.freepik.com/free-vector/soothing-blue-polygonal-background_7196-473.jpg");
   /* background-repeat: -x; */
   /* background-position: right top; */
-  background-size: 100% 100%;
+  background-size: 100% 200%;
   background-attachment: scroll;
   padding-top: 15vh;
   padding-bottom: 15vh;
 }
+
+.space {
+  margin: 5vh;
+}
+
+#body {
+  background-image: url("https://images.clipartlogo.com/files/istock/previews/9088/90881303-blue-cloudy-sky-vector-blurred-background.jpg");
+  background-size: 100% 100%;
+  background-repeat:
+}
+
 
 .flex-container {
   padding-top: 100px;

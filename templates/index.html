@@ -26,10 +26,14 @@
       </li>
     {% endfor %}
   </ul> -->
+  <div class="space">
+  </div>
+  <center>
   <form method="post">
     <input id="subject" class="input_subject" type="string" name="subject_string">
     <input class="input_subject" type="submit" name="action" value="Add Subject">
   </form>
+  </center>
   <div class="flex-container">
     {% for sub in subject_list %}
       <div class="list-group-item">
