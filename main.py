@@ -57,7 +57,7 @@ class SubjectNotesPage(webapp2.RequestHandler):
         if len(self.request.url.split('?')) > 1:
             subject_type = self.request.url.split('?')[1].replace('%', ' ')
         else:
-            subject_type = 'math'
+            subject_type = 'Math'
         user = users.get_current_user()
         subject_template = JINJA_ENVIRONMENT.get_template('templates/subjectNotes.html')
         notes = Note.query().filter(Note.owner == user.user_id() and Note.subject == subject_type).fetch()
