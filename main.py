@@ -35,7 +35,7 @@ class MainPage(webapp2.RequestHandler):
             greeting = '<a href="{}">Sign in</a>'.format(login_url)
         #self.response.write(
          #   '<html><body>{}</body></html>'.format(greeting))
-        main_template = JINJA_ENVIRONMENT.get_template('templates/InputMusic.html')
+        main_template = JINJA_ENVIRONMENT.get_template('templates/index.html')
         self.response.write(main_template.render())
 
 class InputNotesPage(webapp2.RequestHandler):
@@ -55,7 +55,7 @@ class SubjectNotesPage(webapp2.RequestHandler):
     def get(self):
         # need to get the subject that was clicked
         if len(self.request.url.split('?')) > 1:
-            subject_type = self.request.url.split('?')[1]
+            subject_type = self.request.url.split('?')[1].replace('%', ' ')
         else:
             subject_type = 'math'
         user = users.get_current_user()
