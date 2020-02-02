@@ -30,14 +30,23 @@ class MainPage(webapp2.RequestHandler):
         else:
             login_url = users.create_login_url('/welcome') #replace / with whatever url you want
             greeting = '<a href="{}">Sign in</a>'.format(login_url)
+<<<<<<< HEAD
         self.response.write(
             '<html><body>{}</body></html>'.format(greeting))
+=======
+        #self.response.write(
+         #   '<html><body>{}</body></html>'.format(greeting))
+>>>>>>> b60d43fe27ac9cf2fc14565201612c5c5c6d48a2
         main_template = JINJA_ENVIRONMENT.get_template('templates/index.html')
         self.response.write(main_template.render())
 
 class InputNotesPage(webapp2.RequestHandler):
     def get(self):
+<<<<<<< HEAD
         input_notes_template = JINJA_ENVIRONMENT.get_template('templates/InputNotes.html')
+=======
+        calendar_template = JINJA_ENVIRONMENT.get_template('templates/InputNotes.html')
+>>>>>>> b60d43fe27ac9cf2fc14565201612c5c5c6d48a2
         user = users.get_current_user()
         self.response.write(input_notes_template.render())
 
@@ -81,15 +90,13 @@ class InputMusicPage(webapp2.RequestHandler):
 
     def post(self):
         user = users.get_current_user()
-        if self.request.get("action") == "Add to Notes":
-            start_string = self.request.get("starttime")
-            if start_string != "":
-                start_date = datetime.strptime(start_string, "%Y-%m-%dT%H:%M")
-                subject_type = self.request.get("subject-type")
-                current_subject = Subject.query().filter(Subject.owner == user.user_id() and Subject.name == subject_type).fetch()
-                if len(current_subject) == 1:
-                    subject = current_subject[0]
-                    subject.notes.append(Note(text=self.request.get("textbox")))
+        if self.request.get("action") == "Add to Music":
+            title_string = self.request.get("title_string")
+            artist_string = self.request.get("artist_string")
+            current_subject = Subject.query().filter(Subject.owner == user.user_id() and Subject.name == subject_type).fetch()
+            if len(current_subject) == 1:
+                subject = current_subject[0]
+                subject.notes.append(Song(title=title_string, artist=artist_string))
         self.get()
 
 def check_profile_exists(value):
@@ -112,8 +119,10 @@ def check_profile_exists(value):
 
 
 
+
 #https://www.dw.com/image/48688022_303.jpg
 app = webapp2.WSGIApplication([
     ('/', MainPage),
-
+    ('/input', InputNotesPage),
+    ('/subject', SubjectNotesPage)
 ], debug=True)
