@@ -120,6 +120,9 @@ class DeleteHandler(webapp2.RequestHandler):
     def post(self):
         subject_id = self.request.get('subject_id')
         subject_key = ndb.Key(urlsafe = subject_id)
+        note_id = self.request.get('note_id')
+        note_key = nbd.Key(urlsafe = note_id)
+        note_key.delete()
         subject_key.delete()
         time.sleep(0.1)
         self.redirect('/subject')
@@ -132,6 +135,6 @@ app = webapp2.WSGIApplication([
     ('/', MainPage),
     ('/input', InputNotesPage),
     ('/subject', SubjectNotesPage),
-    ('/songs', InputMusicPage)
+    ('/songs', InputMusicPage),
     ('/delete', DeleteHandler)
 ], debug=True)
