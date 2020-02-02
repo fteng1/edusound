@@ -34,8 +34,8 @@ class MainPage(webapp2.RequestHandler):
             login_url = users.create_login_url('/welcome') #replace / with whatever url you want
             greeting = '<a href="{}">Sign in</a>'.format(login_url)
         #self.response.write(
-        #   '<html><body>{}</body></html>'.format(greeting))
-        main_template = JINJA_ENVIRONMENT.get_template('templates/index.html')
+         #   '<html><body>{}</body></html>'.format(greeting))
+        main_template = JINJA_ENVIRONMENT.get_template('templates/InputMusic.html')
         self.response.write(main_template.render())
 
 class InputNotesPage(webapp2.RequestHandler):
