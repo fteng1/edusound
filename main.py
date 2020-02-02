@@ -130,8 +130,8 @@ class DeleteHandler(webapp2.RequestHandler):
 #https://www.dw.com/image/48688022_303.jpg
 app = webapp2.WSGIApplication([
     ('/', MainPage),
-    ('/input', InputNotesPage),
+    ('/inputNotes', InputNotesPage),
     ('/subject', SubjectNotesPage),
-    ('/songs', InputMusicPage)
+    ('/inputMusic', InputMusicPage),
     ('/delete', DeleteHandler)
 ], debug=True)
