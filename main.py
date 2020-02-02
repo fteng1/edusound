@@ -116,6 +116,13 @@ def get_subject_dict():
     }
     return sub_dict
 
+class DeleteHandler(webapp2.RequestHandler):
+    def post(self):
+        subject_id = self.request.get('subject_id')
+        subject_key = ndb.Key(urlsafe = subject_id)
+        subject_key.delete()
+        time.sleep(0.1)
+        self.redirect('/subject')
 
 
 
@@ -123,8 +130,8 @@ def get_subject_dict():
 #https://www.dw.com/image/48688022_303.jpg
 app = webapp2.WSGIApplication([
     ('/', MainPage),
-    ('/inputNotes', InputNotesPage),
-    ('/inputMusic', InputMusicPage),
+    ('/input', InputNotesPage),
     ('/subject', SubjectNotesPage),
     ('/songs', InputMusicPage)
+    ('/delete', DeleteHandler)
 ], debug=True)
