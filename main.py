@@ -54,7 +54,7 @@ class InputNotesPage(webapp2.RequestHandler):
                     subject.notes.append(Note(text=self.request.get("textbox")))
         self.get()
 
-class SubjectPage(webapp2.RequestHandler):
+class SubjectNotesPage(webapp2.RequestHandler):
     def get(self):
         # need to get the subject that was clicked
         subject_type = "math"
@@ -99,6 +99,9 @@ def check_profile_exists(value):
         my_profile = value #will either be None of the Profile creator class
         #my_profile = Profile()
         my_profile.user_id = user.user_id()
+        my_profile.subjects = []
+        for subject in ['math', 'english', 'computer science']:
+            pass
         my_profile.put()
     return my_profile
 
