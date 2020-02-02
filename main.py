@@ -81,7 +81,8 @@ class InputMusicPage(webapp2.RequestHandler):
             title_string = self.request.get("title_string")
             artist_string = self.request.get("artist_string")
             subject_string = self.request.get("subject-type")
-            song = Song(title=title_string, artist=artist_string, owner=user.user_id(), subject=subject_string)
+            song_link = self.request.get("song_string")
+            song = Song(link=song_link, title=title_string, artist=artist_string, owner=user.user_id(), subject=subject_string)
             song.put()
         self.get()
 
