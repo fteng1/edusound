@@ -1,9 +1,27 @@
-<div class="input_music">
-  <div class="create_music_entry">
-    <h2>Input Music</h2>
-    <form method="post">
-      <input class="input_notes" type="string" name="title_string">
-      <input class="input_notes" type = "string" name="artist_string">
-      <input class="input_notes" type="submit" name="action" value="Add to Music">
-    </form>
+<!DOCTYPE html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+    crossorigin="anonymous"
+  />
+  <link href="css/subjectNotes.css" rel="stylesheet" />
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg bg-dark">
+    <a class="navbar-brand" style="color: white">Input Music</a>
+  </nav>
+  <div class="input_music">
+    <div class="create_music_entry">
+      <!-- <h2>Input Music</h2> -->
+      <form method="post">
+        <input class="input_notes" type="string" name="title_string">
+        <input class="input_notes" type = "string" name="artist_string">
+        <input class="input_notes" type="submit" name="action" value="Add to Music">
+      </form>
+    </div>
   </div>
+</body>
