@@ -47,7 +47,7 @@
         <!-- <h2>Input Music</h2> -->
         <label style="padding-left:20px" for="subjects">Choose Subject:</labeL>
         <form style="padding-left:20px" id="subjects" method="post">
-          <select class="input_notes" name="subject-type">
+          <select class="input_notes form-control" name="subject-type">
             {% for sub in subject_list %}
               <option value="{{sub.name.replace(' ', '%')}}">{{sub.name}}</option>
             {% endfor %}
@@ -61,7 +61,7 @@
           </tr>
           </tbody></table><br> -->
           <form>
-            <textarea name="notes_string" rows="10" cols="80" placeholder="Enter Notes Here"></textarea>
+            <textarea name="notes_string" class="text form-control" rows="10" cols="80" placeholder="Enter Notes Here"></textarea>
             <br>
             <input class="input_notes btn btn-large btn-primary ml-auto" type="submit" name="action" value="Add to Notes">
           </form>
