@@ -24,6 +24,7 @@
           <div class="card-body">
             <div class="card-title">
               {{note.title}}
+              <input class="close" type="submit" name="action" value="X">
             </div>
             <div class="card-text">
               {{note.text}}
@@ -45,6 +46,7 @@
       <h5>{{song.title}}</h5>
       <h6>{{song.artist}}</h6>
       <a href="{{song.link}}" id="song-link">Link</a>
+      <input class="close" type="submit" name="action" value="X">
     </li>
     {% endfor %}
   </ul>
