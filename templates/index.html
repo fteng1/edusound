@@ -20,16 +20,14 @@
     </div>
   </nav>
   <ul class="list-group my-2">
-    <li class="list-group-item">
-      <a href="/subject?English">English</a>
-    </li>
-    <li class="list-group-item">
-      <a href="/subject?Math">Math</a>
-    </li>
-    <li class="list-group-item">
-      <a href="/subject?Computer%Science">Computer Science</a>
-    </li>
+    {% for sub in subject_list %}
+      <li class="list-group-item">
+        <a href="/subject?{{sub.name.replace(' ', '%')}}">{{sub.name}}</a>
+      </li>
+    {% endfor %}
   </ul>
-  <input id="subject" class="input_subject" type="string" name="subject_string">
-  <input class="input_subject" type="submit" name="action" value="Add Subject">
+  <form method="post">
+    <input id="subject" class="input_subject" type="string" name="subject_string">
+    <input class="input_subject" type="submit" name="action" value="Add Subject">
+  </form>
 </body>

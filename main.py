@@ -1,6 +1,7 @@
 import webapp2
 import jinja2
 import os
+import time
 
 from google.appengine.ext import ndb
 from google.appengine.api import users
@@ -34,20 +35,29 @@ class MainPage(webapp2.RequestHandler):
             login_url = users.create_login_url('/welcome') #replace / with whatever url you want
             greeting = '<a href="{}">Sign in</a>'.format(login_url)
         #self.response.write(
-         #   '<html><body>{}</body></html>'.format(greeting))
+        #   '<html><body>{}</body></html>'.format(greeting))
         main_template = JINJA_ENVIRONMENT.get_template('templates/index.html')
-        self.response.write(main_template.render())
+        self.response.write(main_template.render(get_subject_dict()))
+
+    def post(self):
+        user = users.get_current_user()
+        if self.request.get("action") == "Add Subject":
+            subject_string = self.request.get("subject_string")
+            subject = Subject(name=subject_string, owner=user.user_id())
+            subject.put()
+        time.sleep(0.1)
+        self.redirect('/')
 
 class InputNotesPage(webapp2.RequestHandler):
     def get(self):
         input_notes_template = JINJA_ENVIRONMENT.get_template('templates/InputNotes.html')
         user = users.get_current_user()
-        self.response.write(input_notes_template.render())
+        self.response.write(input_notes_template.render(get_subject_dict()))
 
     def post(self):
         user = users.get_current_user()
         if self.request.get("action") == "Add to Notes":
-            note = Note(text=self.request.get("textbox"), owner=user.user_id(), subject=self.request.get("subject-type"))
+            note = Note(text=self.request.get("notes_string"), owner=user.user_id(), subject=self.request.get("subject-type"))
             note.put()
         self.get()
 
@@ -57,7 +67,7 @@ class SubjectNotesPage(webapp2.RequestHandler):
         if len(self.request.url.split('?')) > 1:
             subject_type = self.request.url.split('?')[1].replace('%', ' ')
         else:
-            subject_type = 'Math'
+            subject_type = ''
         user = users.get_current_user()
         subject_template = JINJA_ENVIRONMENT.get_template('templates/subjectNotes.html')
         notes = Note.query().filter(Note.owner == user.user_id() and Note.subject == subject_type).fetch()
@@ -73,7 +83,7 @@ class InputMusicPage(webapp2.RequestHandler):
     def get(self):
         input_music_template = JINJA_ENVIRONMENT.get_template('templates/InputMusic.html')
         user = users.get_current_user()
-        self.response.write(input_music_template.render())
+        self.response.write(input_music_template.render(get_subject_dict()))
 
     def post(self):
         user = users.get_current_user()
@@ -98,10 +108,13 @@ def check_profile_exists(value):
         my_profile.put()
     return my_profile
 
-
-
-
-
+def get_subject_dict():
+    user = users.get_current_user()
+    subjects = Subject.query().filter(Subject.owner == user.user_id()).fetch()
+    sub_dict = {
+        "subject_list": subjects
+    }
+    return sub_dict
 
 
 
