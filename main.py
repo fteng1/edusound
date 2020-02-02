@@ -97,28 +97,28 @@ class SubjectNotesPage(webapp2.RequestHandler):
 
     def post(self):
         user = users.get_current_user()
-        if self.request.get("action") == "Add Subject" and self.request.get("subject_string") != '':
-            subject_string = self.request.get("subject_string")
-            subject = Subject(name=subject_string, owner=user.user_id())
-            subject.put()
-        else:
-            key = self.request.get("subject-id")
-            subject_list = Subject.query().filter(Subject.owner == user.user_id()).fetch()
+        if self.request.get("delete-note") == 'X':
+            key = self.request.get("note-id")
+            note_list = Note.query().filter(Note.owner == user.user_id()).fetch()
             flag = False
-            for subj in subject_list:
-                if str(subj.key) == key:
-                    selected_subject = subj
+            for n in note_list:
+                if str(n.key) == key:
+                    selected_note = n
                     flag = True
             if flag:
-                notes_to_delete = Note.query().filter(Note.subject == selected_subject.name and Note.owner == user.user_id())
-                songs_to_delete = Song.query().filter(Song.subject == selected_subject.name and Song.owner == user.user_id())
-                for note in notes_to_delete:
-                    note.key.delete()
-                for song in songs_to_delete:
-                    song.key.delete()
-                selected_subject.key.delete()
+                selected_note.key.delete()
+        else:
+            key = self.request.get("song-id")
+            song_list = Song.query().filter(Song.owner == user.user_id()).fetch()
+            flag = False
+            for s in song_list:
+                if str(s.key) == key:
+                    selected_song = s
+                    flag = True
+            if flag:
+                selected_song.key.delete()
         time.sleep(0.1)
-        self.redirect('/')
+        self.get()
 
 class InputMusicPage(webapp2.RequestHandler):
     def get(self):
