@@ -23,14 +23,16 @@
 }
 
 .navbar-brand {
+  color: #191970;
   font-family: cursive;
   font-style: italic;
   font: Apple Chancery;
   font-size: 75px;
   font-weight: 900;
   letter-spacing: 3px;
-  text-shadow: 3px 2px white;
-  color: #F5FFFA;
+  text-shadow: 4px 3px white;
+  /* color: #A9A9A9; */
+  /* color: #F5FFFA; */
 }
 
 .navbar {
@@ -41,13 +43,10 @@
   background-attachment: scroll;
   padding-top: 10vh;
   padding-bottom: 6vh;
+  color: #191970;
 }
-
 /* .input_notes {
-  width: 300px;
-  height: 40px;
-  border-color: #8ecaff;
-  border-width: thick;
+
 } */
 
 select {
@@ -56,7 +55,4 @@ select {
 
 .input-field {
   width: 60vw;
-  height: 40px;
-  border-color: #8ecaff;
-  border-width: thick;
 }
