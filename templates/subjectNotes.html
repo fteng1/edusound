@@ -16,105 +16,24 @@
   </nav>
 
   <div class="container-fluid my-2">
-    <div class="row left">
-      <div class="col-5">
-        <div class="card">
-          <div class="card-body">
-            <div class="card-title">
-              Card Title: CHANGE ME
-            </div>
-            <div class="card-text">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur
-              perspiciatis quibusdam quod, voluptate hic non aut consequatur.
-              Possimus fugit labore maxime nisi odio mollitia magnam minima
-              expedita veniam totam. Quas. Lorem ipsum dolor, sit amet
-              consectetur adipisicing elit. Consequatur fuga ab laboriosam
-              asperiores eaque. Consequatur recusandae quaerat assumenda
-              nesciunt, doloribus nobis atque tempora accusamus est optio nulla
-              necessitatibus nostrum quod? Lorem ipsum dolor sit, amet
-              consectetur adipisicing elit. Eum voluptas deserunt repellat
-              temporibus aliquid. Accusamus, laborum ipsum accusantium sint eos
-              debitis! Reprehenderit nemo perferendis dolores laborum eos
-              tempore eaque maiores?
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-5">
-        <div class="card">
-          <div class="card-body">
-            <div class="card-title">
-              Card Title: CHANGE ME
-            </div>
-            <div class="card-text">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur
-              perspiciatis quibusdam quod, voluptate hic non aut consequatur.
-              Possimus fugit labore maxime nisi odio mollitia magnam minima
-              expedita veniam totam. Quas. Lorem ipsum dolor, sit amet
-              consectetur adipisicing elit. Consequatur fuga ab laboriosam
-              asperiores eaque. Consequatur recusandae quaerat assumenda
-              nesciunt, doloribus nobis atque tempora accusamus est optio nulla
-              necessitatibus nostrum quod? Lorem ipsum dolor sit, amet
-              consectetur adipisicing elit. Eum voluptas deserunt repellat
-              temporibus aliquid. Accusamus, laborum ipsum accusantium sint eos
-              debitis! Reprehenderit nemo perferendis dolores laborum eos
-              tempore eaque maiores?
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
+    {% for note in notes_list %} {% if loop.index0 % 2 == 0 %}
     <div class="row">
+      {% endif %}
       <div class="col-5">
         <div class="card">
           <div class="card-body">
             <div class="card-title">
-              Card Title: CHANGE ME
+              CHANGE TITLE
             </div>
             <div class="card-text">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur
-              perspiciatis quibusdam quod, voluptate hic non aut consequatur.
-              Possimus fugit labore maxime nisi odio mollitia magnam minima
-              expedita veniam totam. Quas. Lorem ipsum dolor, sit amet
-              consectetur adipisicing elit. Consequatur fuga ab laboriosam
-              asperiores eaque. Consequatur recusandae quaerat assumenda
-              nesciunt, doloribus nobis atque tempora accusamus est optio nulla
-              necessitatibus nostrum quod? Lorem ipsum dolor sit, amet
-              consectetur adipisicing elit. Eum voluptas deserunt repellat
-              temporibus aliquid. Accusamus, laborum ipsum accusantium sint eos
-              debitis! Reprehenderit nemo perferendis dolores laborum eos
-              tempore eaque maiores?
+              {{note.text}}
             </div>
           </div>
         </div>
       </div>
-
-      <div class="col-5">
-        <div class="card">
-          <div class="card-body">
-            <div class="card-title">
-              Card Title: CHANGE ME
-            </div>
-            <div class="card-text">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur
-              perspiciatis quibusdam quod, voluptate hic non aut consequatur.
-              Possimus fugit labore maxime nisi odio mollitia magnam minima
-              expedita veniam totam. Quas. Lorem ipsum dolor, sit amet
-              consectetur adipisicing elit. Consequatur fuga ab laboriosam
-              asperiores eaque. Consequatur recusandae quaerat assumenda
-              nesciunt, doloribus nobis atque tempora accusamus est optio nulla
-              necessitatibus nostrum quod? Lorem ipsum dolor sit, amet
-              consectetur adipisicing elit. Eum voluptas deserunt repellat
-              temporibus aliquid. Accusamus, laborum ipsum accusantium sint eos
-              debitis! Reprehenderit nemo perferendis dolores laborum eos
-              tempore eaque maiores?
-            </div>
-          </div>
-        </div>
-      </div>
+      {% if loop.last or loop.index0 % 2 == 1 %}
     </div>
+    {% endif %} {% endfor %}
   </div>
 
   <ul class="list-group right">
