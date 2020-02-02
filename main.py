@@ -4,6 +4,9 @@ import os
 
 from google.appengine.ext import ndb
 from google.appengine.api import users
+from models import Note
+from models import Song
+from models import Subject
 from models import ModelWithUser
 
 
@@ -44,14 +47,8 @@ class InputNotesPage(webapp2.RequestHandler):
     def post(self):
         user = users.get_current_user()
         if self.request.get("action") == "Add to Notes":
-            start_string = self.request.get("starttime")
-            if start_string != "":
-                start_date = datetime.strptime(start_string, "%Y-%m-%dT%H:%M")
-                subject_type = self.request.get("subject-type")
-                current_subject = Subject.query().filter(Subject.owner == user.user_id() and Subject.name == subject_type).fetch()
-                if len(current_subject) == 1:
-                    subject = current_subject[0]
-                    subject.notes.append(Note(text=self.request.get("textbox")))
+            note = Note(text=self.request.get("textbox"), owner=user.user_id(), subject=self.request.get("subject-type"))
+            note.put()
         self.get()
 
 class SubjectNotesPage(webapp2.RequestHandler):
@@ -60,12 +57,8 @@ class SubjectNotesPage(webapp2.RequestHandler):
         subject_type = "math"
         user = users.get_current_user()
         subject_template = JINJA_ENVIRONMENT.get_template('templates/subjectNotes.html')
-        subject = Subject.query().filter(Subject.owner == user.user_id() and Subject.name == subject_type).fetch()
-        notes = []
-        songs = []
-        for sub in subject:
-            notes.extend(sub.notes)
-            songs.extend(sub.songs)
+        notes = Note.query().filter(Note.owner == user.user_id() and Note.subject == subject_type).fetch()
+        songs = Song.query().filter(Song.owner == user.user_id() and Song.subject == subject_type).fetch()
         subject_dict = {
             "notes_list": notes,
             "songs_list": songs,
@@ -84,10 +77,9 @@ class InputMusicPage(webapp2.RequestHandler):
         if self.request.get("action") == "Add to Music":
             title_string = self.request.get("title_string")
             artist_string = self.request.get("artist_string")
-            current_subject = Subject.query().filter(Subject.owner == user.user_id() and Subject.name == subject_type).fetch()
-            if len(current_subject) == 1:
-                subject = current_subject[0]
-                subject.notes.append(Song(title=title_string, artist=artist_string))
+            subject_string = self.request.get("subject-type")
+            song = Song(title=title_string, artist=artist_string, owner=user.user_id(), subject=subject_string)
+            song.put()
         self.get()
 
 def check_profile_exists(value):
@@ -99,9 +91,6 @@ def check_profile_exists(value):
         my_profile = value #will either be None of the Profile creator class
         #my_profile = Profile()
         my_profile.user_id = user.user_id()
-        my_profile.subjects = []
-        for subject in ['math', 'english', 'computer science']:
-            my_profile.subjects.append(Subject(name=subject, notes=[], songs=[], owner=user.user_id))
         my_profile.put()
     return my_profile
 
