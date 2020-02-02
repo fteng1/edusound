@@ -23,3 +23,18 @@
   font-size: 30px;
   border: none;
 }
+
+.list-group-item {
+  background-color: #f0ffff;
+  opacity: 80%;
+  transition-delay: 0.5ms;
+}
+
+.list-group-item > a {
+  color: black;
+}
+
+.list-group-item:hover {
+  opacity: 100%;
+  transition-delay: 0.5ms;
+}
