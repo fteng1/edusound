@@ -32,7 +32,7 @@ class MainPage(webapp2.RequestHandler):
             greeting = '<a href="{}">Sign in</a>'.format(login_url)
         self.response.write(
             '<html><body>{}</body></html>'.format(greeting))
-        main_template = JINJA_ENVIRONMENT.get_template('home.html')
+        main_template = JINJA_ENVIRONMENT.get_template('index.html')
         self.response.write(main_template.render())
 
 class InputNotesPage(webapp2.RequestHandler):
@@ -44,13 +44,21 @@ class InputNotesPage(webapp2.RequestHandler):
     def post(self):
         if self.request.get("action") == "Add to Notes":
             start_string = self.request.get("starttime")
-            if start_string != "":
-                start_date = datetime.strptime(start_string, "%Y-%m-%dT%H:%M")
-                subject_type = self.request.get("subject-type")
-                current_subject = Subject.query().filter(Subject.owner == user.user_id() and Subject.name == subject_type).fetch()
-                if len(current_subject) == 1:
-                    subject = current_subject[0]
-                    subject.notes.append(Note(date_created=start_date, text=self.request.get("textbox")))
+            subject = self.request.get("subject-type")
+            current_subject = Subject.query().filter(Subject.owner == user.user_id() and Subject.name == subject).fetch()
+
+
+class InputMusic(webapp2.RequestHandler):
+    def get(self):
+        calendar_template = JINJA_ENVIRONMENT.get_template('InputMusic.html')
+        user = users.get_current_user()
+        self.response.write(calendar_template.render())
+
+    def post(self):
+        if self.request.get("action") == "Add to Song":
+            title_string = self.request.get("title")
+            artist_string = self.request.get("artist")
+            current_subject = Subject.query().filter(Subject.owner == user.user_id() and Subject.name == subject).fetch()
 
 
 
@@ -65,6 +73,7 @@ def check_profile_exists(value):
         my_profile.user_id = user.user_id()
         my_profile.put()
     return my_profile
+
 
 
 
