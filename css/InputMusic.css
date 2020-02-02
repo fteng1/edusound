@@ -24,9 +24,13 @@
   padding-bottom: 6vh;
 }
 
-.input_music {
+/* .input_music {
   margin-top: 1vh;
-}
+  width: 300px;
+  height: 40px;
+  border-color: #8ecaff;
+  border-width: thick;
+} */
 
 select {
   width: 8vw !important;

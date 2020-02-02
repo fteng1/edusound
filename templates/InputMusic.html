@@ -10,6 +10,7 @@
   <link href="css/InputMusic.css" rel="stylesheet" />
 </head>
 
+<center>
 <body>
   <nav class="navbar navbar-expand-lg">
     <a class="navbar-brand">Input Music</a>
@@ -19,8 +20,8 @@
   <div class="input_music">
     <div class="create_music_entry">
       <!-- <h2>Input Music</h2> -->
-      <label style="padding-left:20px" for="subjects">Choose Subject:</label>
-      <form style="padding-left:20px" id="subjects" method="post">
+      <label style="padding-left:10px" for="subjects">Choose Subject:</label>
+      <form style="padding-left:10px" id="subjects" method="post">
         <select class="input_music form-control" name="subject-type">
           {% for sub in subject_list %}
           <option value="{{sub.name.replace(' ', '%')}}">{{sub.name}}</option>
@@ -76,3 +77,4 @@
     </div>
   </div>
 </body>
+</center>
