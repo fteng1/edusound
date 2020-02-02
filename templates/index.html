@@ -32,10 +32,12 @@
   </form>
   <div class="flex-container">
     {% for sub in subject_list %}
-      <div class="list-group-item">
-        <a href="/subject?{{sub.name.replace(' ', '%')}}">{{sub.name}}</a>
-        <a href="#" class="close">
-      </div>
+      <form method="post">
+        <div class="list-group-item">
+          <a href="/subject?{{sub.name.replace(' ', '%')}}">{{sub.name}}</a>
+          <a href="#" class="close" name="delete" value="{{sub.name}}">
+        </div>
+      </form>
     {% endfor %}
   </div>
 </body>

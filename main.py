@@ -41,10 +41,21 @@ class MainPage(webapp2.RequestHandler):
 
     def post(self):
         user = users.get_current_user()
-        if self.request.get("action") == "Add Subject":
+        if self.request.get("action") == "Add Subject" and self.request.get("subject_string") != '':
             subject_string = self.request.get("subject_string")
             subject = Subject(name=subject_string, owner=user.user_id())
             subject.put()
+        elif '#' in self.request.url:
+            key = self.request.get("delete")
+            self.response.write(key)
+            subject_list = Subject.query().filter(Subject.owner == user.user_id()).fetch()
+            flag = False
+            for subj in subject_list:
+                if str(subj.name) == key:
+                    selected_subject = subj
+                    flag = True
+            if flag:
+                selected_subject.key.delete()
         time.sleep(0.1)
         self.redirect('/')
 
