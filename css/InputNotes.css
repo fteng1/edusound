@@ -1,10 +1,10 @@
-#head {
+#body {
 	flex: 1;
   display: flex;
   justify-content: space-evenly;
 	flex-direction: column;
 	/* background-color: #e3eaa7; */
-	background-image: url("https://live.staticflickr.com/5472/9041948559_ae975fe9d8_b.jpg");
+	background-image: url("https://static.vecteezy.com/system/resources/previews/000/581/476/large_2x/light-blue-polygon-abstract-background-vector-texture-geometric-with-copy-space.jpg");
 	background-size: 1500px 1100px;
 }
 
