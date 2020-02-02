@@ -13,6 +13,7 @@ class Song(ndb.Model):
     artist = ndb.StringProperty()
     owner = ndb.StringProperty()
     subject = ndb.StringProperty()
+    link = ndb.StringProperty()
 
 class Subject(ndb.Model):
     name = ndb.StringProperty()
