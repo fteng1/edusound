@@ -19,15 +19,22 @@
       <a href="/inputMusic" class="btn btn-large btn-primary">Add Music</a>
     </div>
   </nav>
-  <ul class="list-group my-2">
+  <!-- <ul class="list-group my-2">
     {% for sub in subject_list %}
       <li class="list-group-item">
         <a href="/subject?{{sub.name.replace(' ', '%')}}">{{sub.name}}</a>
       </li>
     {% endfor %}
-  </ul>
+  </ul> -->
   <form method="post">
     <input id="subject" class="input_subject" type="string" name="subject_string">
     <input class="input_subject" type="submit" name="action" value="Add Subject">
   </form>
+  <div class="flex-container">
+    {% for sub in subject_list %}
+      <div class="list-group-item">
+        <a href="/subject?{{sub.name.replace(' ', '%')}}">{{sub.name}}</a>
+      </div>
+    {% endfor %}
+  </div>
 </body>
