@@ -24,3 +24,8 @@
   font-size: 1vw;
   overflow-y: auto;
 }
+
+.main {
+  position: absolute;
+  right: 0;
+}
