@@ -14,25 +14,32 @@
   <nav class="navbar navbar-expand-lg bg-dark">
     <a class="navbar-brand" style="color: white">Input Music</a>
   </nav>
+  <a class="main" href="/"><button id="backbutton">Back to Main Page</button></a>
   <div class="input_music">
     <div class="create_music_entry">
       <!-- <h2>Input Music</h2> -->
-      <form method="post">
+      <label style="padding-left:20px" for="subjects">Choose Subject:</labeL>
+      <form style="padding-left:20px" id="subjects" method="post">
         <select class="input_music" name="subject-type">
           <option value="Math">Math</option>
           <option value="English">English</option>
           <option value="Computer%Science">Computer Science</option>
         </select>
-        <label>Title of Song:
-          <input class="input_music" type="string" name="title_string">
-        </label><br>
-        <label>Artist:
-          <input class="input_music" type = "string" name="artist_string">
-        </label><br>
-        <label>Link:
-          <input class="input_music" type = "string" name="song_string">
-        </label>
+        <div align="center">
+        <table><tbody>
+        <tr><td><label for="title">Title of Song:</label></td>
+          <td>
+            <input id="title" class="input_music" type="string" name="title_string">
+          </td>
+        </tr>
+        <tr><td><label for="artist">Artist:</label></td>
+          <td>
+            <input id="artist"class="input_music" type = "string" name="artist_string">
+          </td>
+        </tr>
+        </tbody></table><br>
         <input class="input_music" type="submit" name="action" value="Add to Music">
+        </div>
       </form>
     </div>
   </div>
