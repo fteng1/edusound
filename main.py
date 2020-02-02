@@ -32,16 +32,17 @@ class MainPage(webapp2.RequestHandler):
             greeting = '<a href="{}">Sign in</a>'.format(login_url)
         self.response.write(
             '<html><body>{}</body></html>'.format(greeting))
-        main_template = JINJA_ENVIRONMENT.get_template('home.html')
+        main_template = JINJA_ENVIRONMENT.get_template('templates/index.html')
         self.response.write(main_template.render())
 
 class InputNotesPage(webapp2.RequestHandler):
     def get(self):
-        calendar_template = JINJA_ENVIRONMENT.get_template('InputNotes.html')
+        input_notes_template = JINJA_ENVIRONMENT.get_template('templates/InputNotes.html')
         user = users.get_current_user()
-        self.response.write(calendar_template.render())
+        self.response.write(input_notes_template.render())
 
     def post(self):
+        user = users.get_current_user()
         if self.request.get("action") == "Add to Notes":
             start_string = self.request.get("starttime")
             if start_string != "":
@@ -50,9 +51,46 @@ class InputNotesPage(webapp2.RequestHandler):
                 current_subject = Subject.query().filter(Subject.owner == user.user_id() and Subject.name == subject_type).fetch()
                 if len(current_subject) == 1:
                     subject = current_subject[0]
-                    subject.notes.append(Note(date_created=start_date, text=self.request.get("textbox")))
+                    subject.notes.append(Note(text=self.request.get("textbox")))
+        self.get()
 
+class SubjectPage(webapp2.RequestHandler):
+    def get(self):
+        # need to get the subject that was clicked
+        subject_type = "math"
+        user = users.get_current_user()
+        subject_template = JINJA_ENVIRONMENT.get_template('templates/subjectNotes.html')
+        subject = Subject.query().filter(Subject.owner == user.user_id() and Subject.name == subject_type).fetch()
+        notes = []
+        songs = []
+        for sub in subject:
+            notes.extend(sub.notes)
+            songs.extend(sub.songs)
+        subject_dict = {
+            "notes_list": notes,
+            "songs_list": songs,
+            "subject_name": subject_type
+        }
+        self.response.write(subject_template.render(subject_dict))
 
+class InputMusicPage(webapp2.RequestHandler):
+    def get(self):
+        input_music_template = JINJA_ENVIRONMENT.get_template('templates/InputMusic.html')
+        user = users.get_current_user()
+        self.response.write(input_music_template.render())
+
+    def post(self):
+        user = users.get_current_user()
+        if self.request.get("action") == "Add to Notes":
+            start_string = self.request.get("starttime")
+            if start_string != "":
+                start_date = datetime.strptime(start_string, "%Y-%m-%dT%H:%M")
+                subject_type = self.request.get("subject-type")
+                current_subject = Subject.query().filter(Subject.owner == user.user_id() and Subject.name == subject_type).fetch()
+                if len(current_subject) == 1:
+                    subject = current_subject[0]
+                    subject.notes.append(Note(text=self.request.get("textbox")))
+        self.get()
 
 def check_profile_exists(value):
     user = users.get_current_user()
