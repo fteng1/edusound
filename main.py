@@ -30,14 +30,14 @@ class MainPage(webapp2.RequestHandler):
         else:
             login_url = users.create_login_url('/welcome') #replace / with whatever url you want
             greeting = '<a href="{}">Sign in</a>'.format(login_url)
-        self.response.write(
-            '<html><body>{}</body></html>'.format(greeting))
-        main_template = JINJA_ENVIRONMENT.get_template('index.html')
+        #self.response.write(
+         #   '<html><body>{}</body></html>'.format(greeting))
+        main_template = JINJA_ENVIRONMENT.get_template('templates/index.html')
         self.response.write(main_template.render())
 
 class InputNotesPage(webapp2.RequestHandler):
     def get(self):
-        calendar_template = JINJA_ENVIRONMENT.get_template('InputNotes.html')
+        calendar_template = JINJA_ENVIRONMENT.get_template('templates/InputNotes.html')
         user = users.get_current_user()
         self.response.write(calendar_template.render())
 
@@ -60,7 +60,11 @@ class InputMusic(webapp2.RequestHandler):
             artist_string = self.request.get("artist")
             current_subject = Subject.query().filter(Subject.owner == user.user_id() and Subject.name == subject).fetch()
 
-
+class SubjectNotesPage(webapp2.RequestHandler):
+    def get(self):
+        calendar_template = JINJA_ENVIRONMENT.get_template('templates/subjectNotes.html')
+        user = users.get_current_user()
+        self.response.write(calendar_template.render())
 
 def check_profile_exists(value):
     user = users.get_current_user()
@@ -86,5 +90,6 @@ def check_profile_exists(value):
 #https://www.dw.com/image/48688022_303.jpg
 app = webapp2.WSGIApplication([
     ('/', MainPage),
-
+    ('/input', InputNotesPage),
+    ('/subject', SubjectNotesPage)
 ], debug=True)
