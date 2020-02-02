@@ -101,7 +101,7 @@ def check_profile_exists(value):
         my_profile.user_id = user.user_id()
         my_profile.subjects = []
         for subject in ['math', 'english', 'computer science']:
-            pass
+            my_profile.subjects.append(Subject(name=subject, notes=[], songs=[], owner=user.user_id))
         my_profile.put()
     return my_profile
 
